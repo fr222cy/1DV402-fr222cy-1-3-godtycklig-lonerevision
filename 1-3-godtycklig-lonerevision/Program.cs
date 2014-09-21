@@ -24,15 +24,34 @@ namespace _1_3_godtycklig_lonerevision
                 Console.ResetColor();
                 return;
             }
-              int[] array = new int[count];
-
+              int[] IntArray = new int[count];
+                
               for (int i = 0; i < count; i++)
               {
-                  Console.Write("Mata in lön nr{0}", i);
-                  array[i] = int.Parse(Console.ReadLine());
+                  Console.Write("Mata in lön nr {0}: ", i +1);
+                  IntArray[i] = int.Parse(Console.ReadLine());
                   
               }
-              Console.WriteLine(array[3]);
+              
+              Array.Sort(IntArray);
+              Console.WriteLine("Here are all your Salaries");
+              foreach (int i in IntArray)
+              {
+                  
+                  Console.WriteLine(i);
+              }
+              int wageDistribution;
+              wageDistribution = (IntArray.Max() - IntArray.Min());
+
+              
+              
+
+              Console.WriteLine(" ");
+              Console.WriteLine("-----------------");
+              Console.WriteLine("Medianlön:");
+              Console.WriteLine("Medellön: {0}", IntArray.Average());
+              Console.WriteLine("Lönespridning: {0}", wageDistribution);
+              Console.WriteLine("-----------------");
         }
 
         static int Readint(string prompt)
@@ -40,6 +59,15 @@ namespace _1_3_godtycklig_lonerevision
             Console.Write("Enter the amount of salaries: ");
             int amountOfSalaries = int.Parse(Console.ReadLine());
             return amountOfSalaries;
+        }
+
+        public static int GetMedian(int[] Value)
+        {
+            decimal Median = 0;
+            int size = Value.Length;
+            int mid = size / 2;
+            Median = (size % 2 != 0) ? (decimal)Value[mid] : ((decimal)Value[mid] + (decimal)Value[mid + 1]) / 2;
+            return Convert.ToInt32(Math.Round(Median));
         }
     }
 }
